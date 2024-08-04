@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "731747351245",
+    "project_id": "fir-db2cb",
+    "storage_bucket": "fir-db2cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731747351245:android:f9540c083b9934d5860784",
+        "android_client_info": {
+          "package_name": "com.example.mychat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzGfvXExM_2xFKT99TUm7FutvZwkMnwB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
