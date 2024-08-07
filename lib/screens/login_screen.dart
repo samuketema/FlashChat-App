@@ -3,6 +3,7 @@ import 'package:mychat/constants.dart';
 import 'package:mychat/screens/chat_screen.dart';
 import 'package:mychat/screens/welcome_screen.dart';
 import 'package:mychat/Components/roundedbutton.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static String id = 'loginScreen';
@@ -11,6 +12,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _auth = FirebaseAuth.instance;
+   String? email;
+   String? password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               onChanged: (value) {
-                //Do something with the user input.
+                email = value;
               },
               decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your email')
             ),
@@ -42,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               onChanged: (value) {
-                //Do something with the user input.
+               password = value;
               },
               decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your password')
             ),
@@ -51,8 +55,18 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             RoundedButton(
               color: Colors.lightBlueAccent,
-              onPressed: () {
-                Navigator.pushNamed(context, ChatScreen.id);
+              onPressed: () async{
+                try {
+                  final user = await _auth.signInWithEmailAndPassword(email: email as String, password: password as String);
+                  if (user != null) {
+                    print('this is the user');
+                    print(user.user?.email);
+                     Navigator.pushNamed(context, ChatScreen.id);
+                  }
+                } catch (e) {
+                  print(e);
+                }
+               
               },
               title: 'Log In',
             )

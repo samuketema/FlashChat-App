@@ -39,7 +39,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               onChanged: (value) {
                 email = value;
               },
-              decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your email')
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your email'
+              ,fillColor: Colors.black)
             ),
             SizedBox(
               height: 8.0,
@@ -57,6 +58,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               color: Colors.blueAccent,
               onPressed: () async {
                 try {
+                  print("'$email' and '$password'");
                   final newUser = await _auth.createUserWithEmailAndPassword(email: email as String, password: password as String);
                   if(newUser != null){
                     Navigator.pushNamed(context, ChatScreen.id);
